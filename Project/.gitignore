@@ -1,5 +1,9 @@
 Library/
 Temp/
+obj/
+.vs/
 
 *.sln
+*.csproj
 *.suo
+*.lock
