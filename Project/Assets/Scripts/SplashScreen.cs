@@ -41,13 +41,18 @@ public class SplashScreen : MonoBehaviour
     
     private void Update()
     {
+        if (Input.GetMouseButton(0) || Input.anyKey)
+        {
+            this.LoadMenu();
+        }
+
         switch (this.state)
         {
             case State.FadeIn:
                 {
-                    float ratio = this.duration > 0 ? (Time.time - this.startTime) / this.duration : 1f;
+                    float ratio = this.duration > 0 ? (Time.time - this.startTime) / this.fadeDuration : 1f;
                     this.logo.color = Color.Lerp(this.logoTransparentColor, this.logoColor, ratio);
-                    if (Time.time > this.startTime + this.duration)
+                    if (Time.time > this.startTime + this.fadeDuration)
                     {
                         this.startTime = Time.time;
                         this.state = State.Displayed;
@@ -69,11 +74,11 @@ public class SplashScreen : MonoBehaviour
 
             case State.FadeOut:
                 {
-                    float ratio = this.duration > 0 ? (Time.time - this.startTime) / this.duration : 1f;
+                    float ratio = this.duration > 0 ? (Time.time - this.startTime) / this.fadeDuration : 1f;
                     this.logo.color = Color.Lerp(this.logoColor, this.logoTransparentColor, ratio);
-                    if (Time.time > this.startTime + this.duration)
+                    if (Time.time > this.startTime + this.fadeDuration)
                     {
-                        SceneManager.LoadSceneAsync(this.sceneToLoad, LoadSceneMode.Single);
+                        this.LoadMenu();
                     }
                 }
 
@@ -82,5 +87,10 @@ public class SplashScreen : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    private void LoadMenu()
+    {
+        SceneManager.LoadSceneAsync(this.sceneToLoad, LoadSceneMode.Single);
     }
 }
