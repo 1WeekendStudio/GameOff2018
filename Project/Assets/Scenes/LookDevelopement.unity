@@ -113,57 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &50279891
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4719845743356022, guid: b38fb8351a9c8b74f8a05fd39338da0e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -2.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 4719845743356022, guid: b38fb8351a9c8b74f8a05fd39338da0e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4719845743356022, guid: b38fb8351a9c8b74f8a05fd39338da0e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 4719845743356022, guid: b38fb8351a9c8b74f8a05fd39338da0e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4719845743356022, guid: b38fb8351a9c8b74f8a05fd39338da0e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4719845743356022, guid: b38fb8351a9c8b74f8a05fd39338da0e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4719845743356022, guid: b38fb8351a9c8b74f8a05fd39338da0e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4719845743356022, guid: b38fb8351a9c8b74f8a05fd39338da0e, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23517394714281348, guid: b38fb8351a9c8b74f8a05fd39338da0e,
-        type: 2}
-      propertyPath: m_SelectedEditorRenderState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1666076880721708, guid: b38fb8351a9c8b74f8a05fd39338da0e, type: 2}
-      propertyPath: m_Name
-      value: Arbuste
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b38fb8351a9c8b74f8a05fd39338da0e, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &242058955
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +275,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1249131255
 Prefab:
@@ -365,7 +314,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4176515224015552, guid: fb3763a8f3f0dce4d95ccf3983cbf95b, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 23424070259646692, guid: fb3763a8f3f0dce4d95ccf3983cbf95b,
         type: 2}
@@ -439,5 +388,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 45.4, y: -30.03, z: 0}
