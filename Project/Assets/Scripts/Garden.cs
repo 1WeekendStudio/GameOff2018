@@ -1,9 +1,9 @@
 ﻿public class Garden
 {
-    public readonly SoilTile[,] Soil;
+    public readonly Plot[] Plots;
 
-    public Garden(int width, int height)
+    public Garden(int numberOfPlots)
     {
-        this.Soil = new SoilTile[width, height];
+        this.Plots = new Plot[numberOfPlots];
     }
 }

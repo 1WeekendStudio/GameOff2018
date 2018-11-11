@@ -1,8 +1,8 @@
 ﻿public class Plant
 {
-    public PlantDescription Description { get; private set; }
+    public Data.PlantDescription Description { get; private set; }
 
-    public Plant(PlantDescription description)
+    public Plant(Data.PlantDescription description)
     {
         this.Description = description;
     }
