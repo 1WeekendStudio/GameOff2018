@@ -1,10 +1,10 @@
-﻿public class Garden
+﻿public class Plot
 {
-    public Data.GardenDescription Description;
+    public Data.PlotDescription Description;
 
     public readonly SoilTile[,] Soil;
 
-    public Garden(Data.GardenDescription description, int width, int height)
+    public Plot(Data.PlotDescription description, int width, int height)
     {
         this.Description = description;
         this.Soil = new SoilTile[width, height];

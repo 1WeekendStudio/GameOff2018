@@ -16,7 +16,7 @@ public class Game : MonoBehaviour
 
     public static Game Instance { get; private set; }
 
-    public Garden Garden { get; private set; }
+    public Plot Plot { get; private set; }
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        this.Garden = GardenGenerator.Instance.CreateGarden(this.gardenWidth, this.gardenHeight);
+        this.Plot = PlotGenerator.Instance.CreatePlot(this.gardenWidth, this.gardenHeight);
     }
 
     private void Update()
