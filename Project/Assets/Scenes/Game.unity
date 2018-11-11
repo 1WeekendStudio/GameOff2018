@@ -265,6 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838762800}
   - component: {fileID: 1838762801}
+  - component: {fileID: 1838762802}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -299,3 +300,18 @@ MonoBehaviour:
   gardenWidth: 100
   gardenHeight: 80
   durationBetweenTwoGameplayTicks: 1
+--- !u!114 &1838762802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838762799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c615d193403eb4591583c4ee8e0887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultGardenDescription: {fileID: 11400000, guid: 17243494ed52a354fbcda42a6376e661,
+    type: 2}
+  defaultSoilDescription: {fileID: 11400000, guid: 89b643af707f57f4c91ba5bb00d5d833,
+    type: 2}

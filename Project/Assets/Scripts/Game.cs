@@ -31,7 +31,7 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        this.Garden = new Garden(this.gardenWidth, this.gardenHeight);
+        this.Garden = GardenGenerator.Instance.CreateGarden(this.gardenWidth, this.gardenHeight);
     }
 
     private void Update()
