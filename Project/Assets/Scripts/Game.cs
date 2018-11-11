@@ -3,10 +3,7 @@
 public class Game : MonoBehaviour
 {
     [SerializeField]
-    private int gardenWidth = 100;
-
-    [SerializeField]
-    private int gardenHeight = 80;
+    private Data.GardenDescription gardenToLoad;
 
     [SerializeField]
     private float durationBetweenTwoGameplayTicks = 1f;
@@ -16,7 +13,7 @@ public class Game : MonoBehaviour
 
     public static Game Instance { get; private set; }
 
-    public Plot Plot { get; private set; }
+    public Garden Garden { get; private set; }
 
     private void Awake()
     {
@@ -31,7 +28,51 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        this.Plot = PlotGenerator.Instance.CreatePlot(this.gardenWidth, this.gardenHeight);
+        if (this.gardenToLoad == null)
+        {
+            Debug.LogError("Please define a garden description to load in the game component.");
+            return;
+        }
+
+        this.Garden = this.CreateGarden(this.gardenToLoad);
+    }
+
+    private Garden CreateGarden(Data.GardenDescription description)
+    {
+        Debug.Log($"Generate garden: {description.GardenSceneName}");
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(description.GardenSceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+
+        PlotGizmo[] plotGizmos = GameObject.FindObjectsOfType<PlotGizmo>();
+        Garden garden = new Garden(plotGizmos.Length);
+
+        for (int index = 0; index < plotGizmos.Length; index++)
+        {
+            garden.Plots[index] = this.CreatePlot(plotGizmos[index]);
+        }
+
+        return garden;
+    }
+
+    private Plot CreatePlot(PlotGizmo plotGizmo)
+    {
+        Debug.Log($"Generate plot of size {plotGizmo.GameplayWidth} per {plotGizmo.GameplayHeight}.");
+
+        Plot plot = new Plot(plotGizmo.PlotDescription, plotGizmo.GameplayWidth, plotGizmo.GameplayHeight);
+
+        for (int x = 0; x < plot.Soil.GetLength(0); x++)
+        {
+            for (int y = 0; y < plot.Soil.GetLength(1); y++)
+            {
+                plot.Soil[x, y].Description = plotGizmo.PlotDescription.DefaultSoilDescription;
+            }
+        }
+
+        // TODO: Generate plot with different type of soil.
+
+        plot.Initialize();
+
+        return plot;
     }
 
     private void Update()
