@@ -6,12 +6,17 @@ public class Game : MonoBehaviour
     private Data.GardenDescription gardenToLoad;
 
     [SerializeField]
+    private View.PlotView plotView;
+
+    [SerializeField]
     private float durationBetweenTwoGameplayTicks = 1f;
 
     private int tickIndex;
     private float lastTickTime = 0f;
 
     public static Game Instance { get; private set; }
+
+    public bool IsLoaded { get; private set; }
 
     public Garden Garden { get; private set; }
 
@@ -26,22 +31,28 @@ public class Game : MonoBehaviour
         Game.Instance = null;
     }
 
-    private void Start()
+    private System.Collections.IEnumerator Start()
     {
         if (this.gardenToLoad == null)
         {
             Debug.LogError("Please define a garden description to load in the game component.");
-            return;
+            yield break;
         }
 
+        // Load garden scene.
+        UnityEngine.SceneManagement.SceneManager.LoadScene(this.gardenToLoad.GardenSceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+
+        // Wait one frame so Unity can terminate the scene loading.
+        yield return null;
+
         this.Garden = this.CreateGarden(this.gardenToLoad);
+        
+        this.IsLoaded = true;
     }
 
     private Garden CreateGarden(Data.GardenDescription description)
     {
         Debug.Log($"Generate garden: {description.GardenSceneName}");
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene(description.GardenSceneName, UnityEngine.SceneManagement.LoadSceneMode.Additive);
 
         PlotGizmo[] plotGizmos = GameObject.FindObjectsOfType<PlotGizmo>();
         Garden garden = new Garden(plotGizmos.Length);
@@ -58,11 +69,12 @@ public class Game : MonoBehaviour
     {
         Debug.Log($"Generate plot of size {plotGizmo.GameplayWidth} per {plotGizmo.GameplayHeight}.");
 
+        // Gameplay
         Plot plot = new Plot(plotGizmo.PlotDescription, plotGizmo.GameplayWidth, plotGizmo.GameplayHeight);
 
-        for (int x = 0; x < plot.Soil.GetLength(0); x++)
+        for (int x = 0; x < plot.Width; x++)
         {
-            for (int y = 0; y < plot.Soil.GetLength(1); y++)
+            for (int y = 0; y < plot.Height; y++)
             {
                 plot.Soil[x, y].Description = plotGizmo.PlotDescription.DefaultSoilDescription;
             }
@@ -72,11 +84,23 @@ public class Game : MonoBehaviour
 
         plot.Initialize();
 
+        // View
+        View.PlotView view = GameObject.Instantiate(this.plotView, plotGizmo.transform.position, plotGizmo.transform.localRotation);
+        view.Plot = plot;
+        view.VisualSize = plotGizmo.VisualSize;
+
+        view.Initialize();
+
         return plot;
     }
 
     private void Update()
     {
+        if (!this.IsLoaded)
+        {
+            return;
+        }
+
         float time = Time.time;
         if (time >= this.lastTickTime + this.durationBetweenTwoGameplayTicks)
         {

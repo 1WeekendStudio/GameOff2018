@@ -10,6 +10,10 @@
         this.Soil = new SoilTile[width, height];
     }
 
+    public int Width => this.Soil.GetLength(0);
+
+    public int Height => this.Soil.GetLength(1);
+
     public void Initialize()
     {
         for (int x = 0; x < this.Soil.GetLength(0); x++)

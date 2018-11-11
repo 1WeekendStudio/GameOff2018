@@ -154,4 +154,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gardenToLoad: {fileID: 11400000, guid: 87cd34edf47e6494ba61b798cda74386, type: 2}
+  plotView: {fileID: 114746036261380682, guid: 9716bd2bde3e2134cb1798d0f077dcbe, type: 2}
   durationBetweenTwoGameplayTicks: 1

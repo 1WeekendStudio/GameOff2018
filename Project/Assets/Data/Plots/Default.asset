@@ -11,5 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5692d9283e4c47f6b4ed30d2ad8c2e8d, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
+  DefaultSoilDescription: {fileID: 11400000, guid: 89b643af707f57f4c91ba5bb00d5d833,
+    type: 2}
   InitialSunshineLevel: 5
   InitialWindLevel: 2

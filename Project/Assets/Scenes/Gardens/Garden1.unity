@@ -374,10 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d3002a1391ea94fb8eadbda248b790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlotDescription: {fileID: 0}
-  GameplayWidth: 0
-  GameplayHeight: 0
-  VisualSize: {x: 0, y: 0}
+  PlotDescription: {fileID: 11400000, guid: 17243494ed52a354fbcda42a6376e661, type: 2}
+  GameplayWidth: 10
+  GameplayHeight: 16
+  VisualSize: {x: 5, y: 8}
 --- !u!1 &1902125803
 GameObject:
   m_ObjectHideFlags: 0
