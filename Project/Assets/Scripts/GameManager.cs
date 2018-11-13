@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using Data;
 
-public class Game : MonoBehaviour
+using UnityEngine;
+
+using View;
+
+public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private Data.GardenDescription gardenToLoad;
-
+    
     [SerializeField]
     private View.PlotView plotView;
 
@@ -14,7 +18,7 @@ public class Game : MonoBehaviour
     private int tickIndex;
     private float lastTickTime = 0f;
 
-    public static Game Instance { get; private set; }
+    public static GameManager Instance { get; private set; }
 
     public bool IsLoaded { get; private set; }
 
@@ -22,13 +26,13 @@ public class Game : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Assert(Game.Instance == null);
-        Game.Instance = this;
+        Debug.Assert(GameManager.Instance == null);
+        GameManager.Instance = this;
     }
 
     private void OnDestroy()
     {
-        Game.Instance = null;
+        GameManager.Instance = null;
     }
 
     private System.Collections.IEnumerator Start()
