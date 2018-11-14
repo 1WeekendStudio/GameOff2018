@@ -1,5 +1,7 @@
 ﻿namespace View
 {
+    using Assets.Scripts;
+
     using UnityEngine;
 
     public class PlotView : MonoBehaviour
@@ -8,13 +10,33 @@
 
         public Vector2 VisualSize;
 
+        private GameObject[,] plantObjects;
+
         public void Initialize()
         {
             this.transform.localScale = new Vector3(this.VisualSize.x / 10f, 1f, this.VisualSize.y / 10f);
+            this.plantObjects = new GameObject[this.Plot.Width, this.Plot.Height];
         }
 
         public void Update()
         {
+            for (int x = 0; x < this.Plot.Width; x++)
+            {
+                for (int y = 0; y < this.Plot.Height; y++)
+                {
+                    SoilTile soilTile = this.Plot.Soil[x, y];
+                    if (soilTile.Plant == null && this.plantObjects[x, y] != null)
+                    {
+                        GameObject.Destroy(this.plantObjects[x, y]);
+                        this.plantObjects[x, y] = null;
+                    }
+                    else if (soilTile.Plant != null && this.plantObjects[x, y] == null)
+                    {
+                        this.plantObjects[x, y] = PlantGenerator.Instance.CreatePlant(soilTile.Plant.Description);
+                        this.plantObjects[x, y].transform.position = this.GetTilePosition(new Position(x, y));
+                    }
+                }
+            }
         }
 
         public Position FindNearestTile(Vector3 hitInfoPoint)
