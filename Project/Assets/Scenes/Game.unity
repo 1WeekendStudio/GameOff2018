@@ -122,6 +122,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1838762800}
   - component: {fileID: 1838762801}
+  - component: {fileID: 1838762803}
+  - component: {fileID: 1838762802}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -156,3 +158,29 @@ MonoBehaviour:
   gardenToLoad: {fileID: 11400000, guid: 87cd34edf47e6494ba61b798cda74386, type: 2}
   plotView: {fileID: 114746036261380682, guid: 9716bd2bde3e2134cb1798d0f077dcbe, type: 2}
   durationBetweenTwoGameplayTicks: 1
+--- !u!114 &1838762802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838762799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb03d9a04cadb2b418487a7c3e274a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultPlantPrefab: {fileID: 1977077119726422, guid: 77d7b701b4bc11542b9949a07f06bd8a,
+    type: 2}
+  defaultPlantGhostPrefab: {fileID: 1977077119726422, guid: e5426bddd3fbbb34b87c68f6f6f0a3c0,
+    type: 2}
+--- !u!114 &1838762803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838762799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb77f650353e46438ffd69c0f6a99b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
