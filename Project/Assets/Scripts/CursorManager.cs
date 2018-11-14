@@ -50,4 +50,15 @@ public class CursorManager : MonoBehaviour
     {
         this.currentCursor?.OnDrawGizmos();
     }
+
+#if UNITY_EDITOR
+    private void OnGUI()
+    {
+        if (this.currentCursor != null)
+        {
+            GUILayout.Space(20f);
+            GUILayout.Label($"Cursor {this.currentCursor.GetType().Name}");
+        }
+    }
+#endif
 }
