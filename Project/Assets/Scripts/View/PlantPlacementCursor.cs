@@ -37,6 +37,18 @@
                 Position tile = plotView.FindNearestTile(hitInfo.point);
                 Vector3 position = plotView.GetTilePosition(tile);
                 this.ghost.transform.position = position;
+                this.ghost.SetActive(true);
+
+                if (Input.GetMouseButton(0))
+                {
+                    PlantDescription description = new PlantDescription();
+                    description.LifeTime = 100;
+                    GameManager.Instance.PlantInPlot(plotView.Plot, tile, description);
+                }
+            }
+            else
+            {
+                this.ghost.SetActive(false);
             }
         }
 

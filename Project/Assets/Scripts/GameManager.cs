@@ -24,6 +24,17 @@ public class GameManager : MonoBehaviour
 
     public Garden Garden { get; private set; }
 
+    public bool PlantInPlot(Plot plot, Position tile, PlantDescription description)
+    {
+        if (plot.Soil[tile.X, tile.Y].Plant != null)
+        {
+            return false;
+        }
+
+        plot.Soil[tile.X, tile.Y].Plant = new Plant(description);
+        return true;
+    }
+
     private void Awake()
     {
         Debug.Assert(GameManager.Instance == null);
