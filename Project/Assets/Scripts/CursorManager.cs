@@ -7,6 +7,9 @@ using View;
 
 public class CursorManager : MonoBehaviour
 {
+    public Plot HoveredPlot = null;
+    public Position HoveredPlotPosition = Position.Invalid;
+
     private Dictionary<System.Type, ICursor> cursors = new Dictionary<Type, ICursor>();
     private ICursor currentCursor;
 

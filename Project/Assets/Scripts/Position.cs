@@ -2,6 +2,8 @@
 
 public struct Position
 {
+    public static readonly Position Invalid = new Position(-1, -1);
+
     public int X;
     public int Y;
 
