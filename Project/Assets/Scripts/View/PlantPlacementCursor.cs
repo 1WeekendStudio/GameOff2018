@@ -23,6 +23,7 @@
 
         public override void OnDeactivate()
         {
+            this.ghost.SetActive(false);
         }
 
         protected override void Update(Camera camera, PlotView hoveredPlotView, Position hoveredTile)

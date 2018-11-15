@@ -17,7 +17,7 @@ public class CursorManager : MonoBehaviour
 
     public static CursorManager Instance { get; private set; }
 
-    public void ChangeCursor<T>(object parameter) where T : ICursor
+    public void ChangeCursor<T>(object parameter = null) where T : ICursor
     {
         this.currentCursor?.OnDeactivate();
 
@@ -36,6 +36,7 @@ public class CursorManager : MonoBehaviour
         CursorManager.Instance = this;
 
         this.cursors.Add(typeof(PlantPlacementCursor), new PlantPlacementCursor());
+        this.cursors.Add(typeof(DefaultCursor), new DefaultCursor());
     }
 
     private void Update()

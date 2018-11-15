@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
         }
 
         plot.Soil[tile.X, tile.Y].Plant = new Plant(description);
+
+        CursorManager.Instance.ChangeCursor<DefaultCursor>();
+
         return true;
     }
 
@@ -108,7 +111,7 @@ public class GameManager : MonoBehaviour
         view.VisualSize = plotGizmo.VisualSize;
 
         view.Initialize();
-
+        
         return plot;
     }
 
