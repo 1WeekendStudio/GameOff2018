@@ -17,4 +17,9 @@ public struct Position
     {
         return new Vector2(position.X, position.Y);
     }
+
+    public override string ToString()
+    {
+        return $"({this.X},{this.Y})";
+    }
 }
