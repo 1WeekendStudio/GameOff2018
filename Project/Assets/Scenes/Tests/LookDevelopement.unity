@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44300273, g: 0.49219579, b: 0.5719249, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300318, g: 0.49219626, b: 0.57192606, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -183,13 +183,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 242058955}
-  m_LocalRotation: {x: -0.10819885, y: 0.29214987, z: -0.033286277, w: -0.9496491}
+  m_LocalRotation: {x: 0.10798759, y: -0.29811087, z: 0.033965446, w: 0.94779485}
   m_LocalPosition: {x: 0, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 13, y: -394.2, z: 0}
+  m_LocalEulerAnglesHint: {x: 13, y: -754.92, z: 0}
+--- !u!1001 &360600737
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 13700000, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9983217
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.057912428
+      objectReference: {fileID: 0}
+    - target: {fileID: 400026, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5abc1a870cee80449b7a90f2a76a3e50, type: 2}
+    - target: {fileID: 400026, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 186.64
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 536144b00d0f18b4784d08684b2c6f78, type: 3}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1249131255
 Prefab:
   m_ObjectHideFlags: 0
