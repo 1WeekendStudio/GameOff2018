@@ -18,7 +18,7 @@
         private Gauge sunProperty;
 
         [SerializeField]
-        private Text windProperty;
+        private Gauge windProperty;
 
         [SerializeField]
         private Text elevationProperty;
@@ -46,7 +46,7 @@
             }
 
             this.panel.gameObject.SetActive(true);
-            this.title.text = position.ToString();
+            this.title.text = soilTile.Plant.Name;
 
             this.waterProperty.Value = soilTile.WaterLevel;
             this.waterProperty.Min = soilTile.Plant.Description.MinimumWater;
@@ -56,7 +56,9 @@
             this.sunProperty.Min = soilTile.Plant.Description.MinimumSunshine;
             this.sunProperty.Max = soilTile.Plant.Description.MaximumSunshine;
 
-            this.windProperty.text = $"{soilTile.WindLevel} / {soilTile.Plant.Description.WindResistance}";
+            this.windProperty.Value = soilTile.WindLevel;
+            this.windProperty.Max = soilTile.Plant.Description.WindResistance;
+
             this.elevationProperty.text = soilTile.Elevation.ToString();
         }
     }

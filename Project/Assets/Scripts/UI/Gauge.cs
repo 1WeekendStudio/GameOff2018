@@ -16,6 +16,9 @@
         [SerializeField]
         private Image max;
 
+        [SerializeField]
+        private bool displayMin;
+
         private RectTransform rectTransform;
 
         public int Value
@@ -48,6 +51,10 @@
         private void Start()
         {
             this.rectTransform = this.GetComponent<RectTransform>();
+            if (!this.displayMin)
+            {
+                this.min.gameObject.SetActive(false);
+            }
         }
         
         private void Update()

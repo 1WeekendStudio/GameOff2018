@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
-        plot.Soil[tile.X, tile.Y].Plant = new Plant(description);
+        plot.Soil[tile.X, tile.Y].Plant = new Plant("PlantName", description);
 
         CursorManager.Instance.ChangeCursor<DefaultCursor>();
 
