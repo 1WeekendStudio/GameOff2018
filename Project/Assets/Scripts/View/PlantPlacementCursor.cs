@@ -30,6 +30,13 @@
         {
             if (hoveredPlotView != null)
             {
+                if (hoveredPlotView.Plot.Soil[hoveredTile.X, hoveredTile.Y].Plant != null)
+                {
+                    // There is already a plant.
+                    this.ghost.SetActive(false);
+                    return;
+                }
+
                 Vector3 position = hoveredPlotView.GetTilePosition(hoveredTile);
                 this.ghost.transform.position = position;
                 this.ghost.SetActive(true);
