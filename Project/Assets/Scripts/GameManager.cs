@@ -66,9 +66,6 @@ public class GameManager : MonoBehaviour
         this.Garden = this.CreateGarden(this.gardenToLoad);
         
         this.IsLoaded = true;
-
-        PlantDescription defaultPlant = new PlantDescription();
-        CursorManager.Instance.ChangeCursor<PlantPlacementCursor>(defaultPlant);
     }
 
     private Garden CreateGarden(Data.GardenDescription description)

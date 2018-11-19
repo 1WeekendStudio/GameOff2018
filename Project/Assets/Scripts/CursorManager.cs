@@ -17,6 +17,8 @@ public class CursorManager : MonoBehaviour
 
     public static CursorManager Instance { get; private set; }
 
+    public ICursor CurrentCursor => this.currentCursor;
+
     public void ChangeCursor<T>(object parameter = null) where T : ICursor
     {
         this.currentCursor?.OnDeactivate();
