@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb03d9a04cadb2b418487a7c3e274a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultPlantPrefab: {fileID: 1977077119726422, guid: 77d7b701b4bc11542b9949a07f06bd8a,
+  defaultPlantPrefab: {fileID: 1122266786458952, guid: e6c7bf10ef6d547459194b3c64efb4fc,
     type: 2}
   defaultPlantGhostPrefab: {fileID: 1977077119726422, guid: e5426bddd3fbbb34b87c68f6f6f0a3c0,
     type: 2}
