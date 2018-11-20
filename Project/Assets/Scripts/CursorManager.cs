@@ -7,8 +7,10 @@ using View;
 
 public class CursorManager : MonoBehaviour
 {
-    public Plot HoveredPlot = null;
+    public PlotView HoveredPlot = null;
     public Position HoveredPlotPosition = Position.Invalid;
+    public PlotView SelectedPlot = null;
+    public Position SelectedPlotPosition = Position.Invalid;
 
     private Dictionary<System.Type, ICursor> cursors = new Dictionary<Type, ICursor>();
     private ICursor currentCursor;
@@ -16,6 +18,8 @@ public class CursorManager : MonoBehaviour
     private Camera currentCamera = null;
 
     public static CursorManager Instance { get; private set; }
+
+    public ICursor CurrentCursor => this.currentCursor;
 
     public void ChangeCursor<T>(object parameter = null) where T : ICursor
     {

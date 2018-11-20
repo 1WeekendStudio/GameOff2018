@@ -21,13 +21,25 @@
         {
             if (hoveredPlotView != null)
             {
-                CursorManager.Instance.HoveredPlot = hoveredPlotView.Plot;
+                CursorManager.Instance.HoveredPlot = hoveredPlotView;
                 CursorManager.Instance.HoveredPlotPosition = hoveredTile;
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    CursorManager.Instance.SelectedPlot = hoveredPlotView;
+                    CursorManager.Instance.SelectedPlotPosition = hoveredTile;
+                }
             }
             else
             {
                 CursorManager.Instance.HoveredPlot = null;
                 CursorManager.Instance.HoveredPlotPosition = Position.Invalid;
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    CursorManager.Instance.SelectedPlot = null;
+                    CursorManager.Instance.SelectedPlotPosition = Position.Invalid;
+                }
             }
         }
     }

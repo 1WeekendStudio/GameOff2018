@@ -1,53 +1,86 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-
-public class PlantTooltip : MonoBehaviour
+﻿namespace UI
 {
-    [SerializeField]
-    private RectTransform panel;
+    using System.Collections;
 
-    [SerializeField]
-    private Text title;
+    using UnityEngine;
+    using UnityEngine.UI;
 
-    [SerializeField]
-    private Text waterProperty;
+    using View;
 
-    [SerializeField]
-    private Text sunProperty;
-
-    [SerializeField]
-    private Text windProperty;
-
-    [SerializeField]
-    private Text elevationProperty;
-
-    private void Start()
+    public class PlantTooltip : MonoBehaviour
     {
-    }
-    
-    private void Update()
-    {
-        if (CursorManager.Instance == null || CursorManager.Instance.HoveredPlot == null)
+        [SerializeField]
+        private RectTransform panel;
+
+        [SerializeField]
+        private Text title;
+
+        [SerializeField]
+        private Gauge waterProperty;
+
+        [SerializeField]
+        private Gauge sunProperty;
+
+        [SerializeField]
+        private Gauge windProperty;
+
+        [SerializeField]
+        private Text elevationProperty;
+
+        [SerializeField]
+        private float verticalOffset = 150f;
+
+        private Camera camera;
+
+        private IEnumerator Start()
         {
-            this.panel.gameObject.SetActive(false);
-            return;
+            while (this.camera == null)
+            {
+                this.camera = FindObjectOfType<Camera>();
+                yield return null;
+            }
         }
-
-        Position position = CursorManager.Instance.HoveredPlotPosition;
-
-        SoilTile soilTile = CursorManager.Instance.HoveredPlot.Soil[position.X, position.Y];
-
-        if (soilTile.Plant == null)
+        
+        private void Update()
         {
-            this.panel.gameObject.SetActive(false);
-            return;
-        }
+            if (CursorManager.Instance == null || CursorManager.Instance.SelectedPlot == null)
+            {
+                this.panel.gameObject.SetActive(false);
+                return;
+            }
 
-        this.panel.gameObject.SetActive(true);
-        this.title.text = position.ToString();
-        this.waterProperty.text = $"{soilTile.WaterLevel} / {soilTile.Plant.Description.MinimumWater} - {soilTile.Plant.Description.MaximumWater}";
-        this.sunProperty.text = $"{soilTile.SunshineLevel} / {soilTile.Plant.Description.MinimumSunshine} - {soilTile.Plant.Description.MaximumSunshine}";
-        this.windProperty.text = $"{soilTile.WindLevel} / {soilTile.Plant.Description.WindResistance}";
-        this.elevationProperty.text = soilTile.Elevation.ToString();
+            Position position = CursorManager.Instance.SelectedPlotPosition;
+
+            PlotView plotView = CursorManager.Instance.SelectedPlot;
+            SoilTile soilTile = plotView.Plot.Soil[position.X, position.Y];
+
+            if (soilTile.Plant == null)
+            {
+                this.panel.gameObject.SetActive(false);
+                return;
+            }
+
+            // Position.
+            float yOffset = (this.panel.rect.height / 2f) + this.verticalOffset;
+            Vector3 tilePosition = plotView.GetTilePosition(position);
+            Vector3 screepPoint = this.camera.WorldToScreenPoint(tilePosition);
+            this.panel.anchoredPosition = new Vector2(screepPoint.x, yOffset + screepPoint.y);
+
+            this.panel.gameObject.SetActive(true);
+            this.title.text = soilTile.Plant.Name;
+
+            this.waterProperty.Value = soilTile.WaterLevel;
+            this.waterProperty.Min = soilTile.Plant.Description.MinimumWater;
+            this.waterProperty.Max = soilTile.Plant.Description.MaximumWater;
+
+            this.sunProperty.Value = soilTile.SunshineLevel;
+            this.sunProperty.Min = soilTile.Plant.Description.MinimumSunshine;
+            this.sunProperty.Max = soilTile.Plant.Description.MaximumSunshine;
+
+            this.windProperty.Value = soilTile.WindLevel;
+            this.windProperty.Max = soilTile.Plant.Description.WindResistance;
+
+            this.elevationProperty.text = soilTile.Elevation.ToString();
+        }
     }
 }

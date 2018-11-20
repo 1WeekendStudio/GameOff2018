@@ -4,13 +4,16 @@ using UnityEngine;
 
 using View;
 
-public class GameManager : MonoBehaviour
+public partial class GameManager : MonoBehaviour
 {
     [SerializeField]
     private Data.GardenDescription gardenToLoad;
     
     [SerializeField]
     private View.PlotView plotView;
+
+    [SerializeField]
+    private int numberOfDnaInInventoryAtStart = 3;
 
     [SerializeField]
     private float durationBetweenTwoGameplayTicks = 1f;
@@ -24,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     public Garden Garden { get; private set; }
 
+    public Inventory Inventory { get; private set; }
+
     public bool PlantInPlot(Plot plot, Position tile, PlantDescription description)
     {
         if (plot.Soil[tile.X, tile.Y].Plant != null)
@@ -31,7 +36,7 @@ public class GameManager : MonoBehaviour
             return false;
         }
 
-        plot.Soil[tile.X, tile.Y].Plant = new Plant(description);
+        plot.Soil[tile.X, tile.Y].Plant = new Plant("PlantName", description);
 
         CursorManager.Instance.ChangeCursor<DefaultCursor>();
 
@@ -64,57 +69,36 @@ public class GameManager : MonoBehaviour
         yield return null;
 
         this.Garden = this.CreateGarden(this.gardenToLoad);
-        
-        this.IsLoaded = true;
 
-        PlantDescription defaultPlant = new PlantDescription();
-        CursorManager.Instance.ChangeCursor<PlantPlacementCursor>(defaultPlant);
-    }
+        // Generate DNA.
+        Dna[] dnaDatabase = this.GenerateDnaDatabase();
 
-    private Garden CreateGarden(Data.GardenDescription description)
-    {
-        Debug.Log($"Generate garden: {description.GardenSceneName}");
+        Debug.Assert(dnaDatabase.Length > this.numberOfDnaInInventoryAtStart, "Not enough dna");
 
-        PlotGizmo[] plotGizmos = GameObject.FindObjectsOfType<PlotGizmo>();
-        Garden garden = new Garden(plotGizmos.Length);
-
-        for (int index = 0; index < plotGizmos.Length; index++)
+        // Put some in inventory.
+        this.Inventory = new Inventory();
+        for (int index = 0; index < this.numberOfDnaInInventoryAtStart; index++)
         {
-            garden.Plots[index] = this.CreatePlot(plotGizmos[index]);
+            this.Inventory.Add(dnaDatabase[index]);
         }
 
-        return garden;
-    }
-
-    private Plot CreatePlot(PlotGizmo plotGizmo)
-    {
-        Debug.Log($"Generate plot of size {plotGizmo.GameplayWidth} per {plotGizmo.GameplayHeight}.");
-
-        // Gameplay
-        Plot plot = new Plot(plotGizmo.PlotDescription, plotGizmo.GameplayWidth, plotGizmo.GameplayHeight);
-
-        for (int x = 0; x < plot.Width; x++)
+        // Put the rest in garden.
+        for (int index = this.numberOfDnaInInventoryAtStart; index < dnaDatabase.Length; index++)
         {
-            for (int y = 0; y < plot.Height; y++)
+            Plot plot = this.Garden.Plots[Random.Range(0, this.Garden.Plots.Length)];
+            Position position = Position.Random(plot.Width, plot.Height);
+            if (plot.Soil[position.X, position.Y].Dna != null)
             {
-                plot.Soil[x, y].Description = plotGizmo.PlotDescription.DefaultSoilDescription;
+                index--;
+                continue;
             }
+
+            plot.Soil[position.X, position.Y].Dna = dnaDatabase[index];
         }
 
-        // TODO: Generate plot with different type of soil.
-
-        plot.Initialize();
-
-        // View
-        View.PlotView view = GameObject.Instantiate(this.plotView, plotGizmo.transform.position, plotGizmo.transform.localRotation);
-        view.Plot = plot;
-        view.VisualSize = plotGizmo.VisualSize;
-
-        view.Initialize();
-        
-        return plot;
+        this.IsLoaded = true;
     }
-
+    
     private void Update()
     {
         if (!this.IsLoaded)
@@ -133,41 +117,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Tick()
-    {
-        this.TickStep_Grow();
-
-        this.TickStep_Propagate();
-
-        this.TickStep_Life();
-
-        this.TickStep_OrganicCreation();
-    }
-
 #if UNITY_EDITOR
     private void OnGUI()
     {
         GUILayout.Label($"Tick {this.tickIndex}");
     }
 #endif
-
-    private void TickStep_Grow()
-    {
-        // TODO
-    }
-
-    private void TickStep_Propagate()
-    {
-        // TODO
-    }
-
-    private void TickStep_Life()
-    {
-        // TODO
-    }
-
-    private void TickStep_OrganicCreation()
-    {
-        // TODO
-    }
 }
