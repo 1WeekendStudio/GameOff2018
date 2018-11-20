@@ -117,41 +117,10 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-    private void Tick()
-    {
-        this.TickStep_Grow();
-
-        this.TickStep_Propagate();
-
-        this.TickStep_Life();
-
-        this.TickStep_OrganicCreation();
-    }
-
 #if UNITY_EDITOR
     private void OnGUI()
     {
         GUILayout.Label($"Tick {this.tickIndex}");
     }
 #endif
-
-    private void TickStep_Grow()
-    {
-        // TODO
-    }
-
-    private void TickStep_Propagate()
-    {
-        // TODO
-    }
-
-    private void TickStep_Life()
-    {
-        // TODO
-    }
-
-    private void TickStep_OrganicCreation()
-    {
-        // TODO
-    }
 }
