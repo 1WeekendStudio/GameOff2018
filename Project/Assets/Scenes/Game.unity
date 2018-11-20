@@ -1501,7 +1501,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gardenToLoad: {fileID: 11400000, guid: 87cd34edf47e6494ba61b798cda74386, type: 2}
   plotView: {fileID: 114746036261380682, guid: 9716bd2bde3e2134cb1798d0f077dcbe, type: 2}
+  numberOfDnaInInventoryAtStart: 3
   durationBetweenTwoGameplayTicks: 1
+  numberOfDnaToGenerate: 5
+  dnaNameDatabase:
+  - A
+  - B
+  - C
+  - D
+  - E
 --- !u!114 &1838762802
 MonoBehaviour:
   m_ObjectHideFlags: 0

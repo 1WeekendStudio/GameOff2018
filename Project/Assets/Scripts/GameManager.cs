@@ -4,13 +4,16 @@ using UnityEngine;
 
 using View;
 
-public class GameManager : MonoBehaviour
+public partial class GameManager : MonoBehaviour
 {
     [SerializeField]
     private Data.GardenDescription gardenToLoad;
     
     [SerializeField]
     private View.PlotView plotView;
+
+    [SerializeField]
+    private int numberOfDnaInInventoryAtStart = 3;
 
     [SerializeField]
     private float durationBetweenTwoGameplayTicks = 1f;
@@ -23,6 +26,8 @@ public class GameManager : MonoBehaviour
     public bool IsLoaded { get; private set; }
 
     public Garden Garden { get; private set; }
+
+    public Inventory Inventory { get; private set; }
 
     public bool PlantInPlot(Plot plot, Position tile, PlantDescription description)
     {
@@ -64,54 +69,36 @@ public class GameManager : MonoBehaviour
         yield return null;
 
         this.Garden = this.CreateGarden(this.gardenToLoad);
-        
+
+        // Generate DNA.
+        Dna[] dnaDatabase = this.GenerateDnaDatabase();
+
+        Debug.Assert(dnaDatabase.Length > this.numberOfDnaInInventoryAtStart, "Not enough dna");
+
+        // Put some in inventory.
+        this.Inventory = new Inventory();
+        for (int index = 0; index < this.numberOfDnaInInventoryAtStart; index++)
+        {
+            this.Inventory.Add(dnaDatabase[index]);
+        }
+
+        // Put the rest in garden.
+        for (int index = this.numberOfDnaInInventoryAtStart; index < dnaDatabase.Length; index++)
+        {
+            Plot plot = this.Garden.Plots[Random.Range(0, this.Garden.Plots.Length)];
+            Position position = Position.Random(plot.Width, plot.Height);
+            if (plot.Soil[position.X, position.Y].Dna != null)
+            {
+                index--;
+                continue;
+            }
+
+            plot.Soil[position.X, position.Y].Dna = dnaDatabase[index];
+        }
+
         this.IsLoaded = true;
     }
-
-    private Garden CreateGarden(Data.GardenDescription description)
-    {
-        Debug.Log($"Generate garden: {description.GardenSceneName}");
-
-        PlotGizmo[] plotGizmos = GameObject.FindObjectsOfType<PlotGizmo>();
-        Garden garden = new Garden(plotGizmos.Length);
-
-        for (int index = 0; index < plotGizmos.Length; index++)
-        {
-            garden.Plots[index] = this.CreatePlot(plotGizmos[index]);
-        }
-
-        return garden;
-    }
-
-    private Plot CreatePlot(PlotGizmo plotGizmo)
-    {
-        Debug.Log($"Generate plot of size {plotGizmo.GameplayWidth} per {plotGizmo.GameplayHeight}.");
-
-        // Gameplay
-        Plot plot = new Plot(plotGizmo.PlotDescription, plotGizmo.GameplayWidth, plotGizmo.GameplayHeight);
-
-        for (int x = 0; x < plot.Width; x++)
-        {
-            for (int y = 0; y < plot.Height; y++)
-            {
-                plot.Soil[x, y].Description = plotGizmo.PlotDescription.DefaultSoilDescription;
-            }
-        }
-
-        // TODO: Generate plot with different type of soil.
-
-        plot.Initialize();
-
-        // View
-        View.PlotView view = GameObject.Instantiate(this.plotView, plotGizmo.transform.position, plotGizmo.transform.localRotation);
-        view.Plot = plot;
-        view.VisualSize = plotGizmo.VisualSize;
-
-        view.Initialize();
-        
-        return plot;
-    }
-
+    
     private void Update()
     {
         if (!this.IsLoaded)
