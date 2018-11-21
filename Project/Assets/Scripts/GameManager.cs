@@ -37,9 +37,6 @@ public partial class GameManager : MonoBehaviour
         }
 
         plot.Soil[tile.X, tile.Y].Plant = new Plant("PlantName", description);
-
-        CursorManager.Instance.ChangeCursor<DefaultCursor>();
-
         return true;
     }
 
@@ -95,6 +92,8 @@ public partial class GameManager : MonoBehaviour
 
             plot.Soil[position.X, position.Y].Dna = dnaDatabase[index];
         }
+
+        CursorManager.Instance.ChangeCursor<DefaultCursor>();
 
         this.IsLoaded = true;
     }

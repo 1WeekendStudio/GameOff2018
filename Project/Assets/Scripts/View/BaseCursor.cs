@@ -30,6 +30,8 @@
             }
         }
 
+        public abstract void OnSelect(PlotView selectedPlotView, Position selectedTile);
+
         public abstract void OnDeactivate();
 
         public virtual void OnDrawGizmos()
@@ -37,6 +39,36 @@
             Gizmos.DrawLine(this.origin, this.origin + (1000 * this.direction));
         }
 
-        protected abstract void Update(Camera camera, PlotView plotView, Position tile);
+        protected virtual void Update(Camera camera, PlotView hoveredPlotView, Position hoveredTile)
+        {
+            if (hoveredPlotView != null)
+            {
+                CursorManager.Instance.HoveredPlot = hoveredPlotView;
+                CursorManager.Instance.HoveredPlotPosition = hoveredTile;
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    if (hoveredPlotView != CursorManager.Instance.SelectedPlot
+                        || hoveredTile != CursorManager.Instance.SelectedPlotPosition)
+                    {
+                        CursorManager.Instance.SelectedPlot = hoveredPlotView;
+                        CursorManager.Instance.SelectedPlotPosition = hoveredTile;
+
+                        this.OnSelect(hoveredPlotView, hoveredTile);
+                    }
+                }
+            }
+            else
+            {
+                CursorManager.Instance.HoveredPlot = null;
+                CursorManager.Instance.HoveredPlotPosition = Position.Invalid;
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    CursorManager.Instance.SelectedPlot = null;
+                    CursorManager.Instance.SelectedPlotPosition = Position.Invalid;
+                }
+            }
+        }
     }
 }

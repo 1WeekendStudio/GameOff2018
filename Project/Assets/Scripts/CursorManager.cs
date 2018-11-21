@@ -7,10 +7,20 @@ using View;
 
 public class CursorManager : MonoBehaviour
 {
+    [NonSerialized]
     public PlotView HoveredPlot = null;
+    [NonSerialized]
     public Position HoveredPlotPosition = Position.Invalid;
+    [NonSerialized]
     public PlotView SelectedPlot = null;
+    [NonSerialized]
     public Position SelectedPlotPosition = Position.Invalid;
+
+    [SerializeField]
+    private GameObject hoverPrefab;
+
+    [SerializeField]
+    private GameObject selectionPrefab;
 
     private Dictionary<System.Type, ICursor> cursors = new Dictionary<Type, ICursor>();
     private ICursor currentCursor;
@@ -39,7 +49,10 @@ public class CursorManager : MonoBehaviour
         Debug.Assert(CursorManager.Instance == null);
         CursorManager.Instance = this;
 
-        this.cursors.Add(typeof(PlantPlacementCursor), new PlantPlacementCursor());
+        var plantPlacementCursor = new GardeningCursor();
+        plantPlacementCursor.LoadPrefabs(this.hoverPrefab, this.selectionPrefab);
+
+        this.cursors.Add(typeof(GardeningCursor), plantPlacementCursor);
         this.cursors.Add(typeof(DefaultCursor), new DefaultCursor());
     }
 
