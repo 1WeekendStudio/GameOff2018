@@ -30,15 +30,18 @@
         private Text elevationProperty;
 
         [SerializeField]
+        private Button createButton;
+
+        [SerializeField]
         private float verticalOffset = 150f;
 
         private Camera camera;
 
         public void CreatePlant()
         {
-            //PlantDescription description = new PlantDescription();
-            //    description.LifeTime = 100;
-            //    GameManager.Instance.PlantInPlot(hoveredPlotView.Plot, hoveredTile, description);
+            PlantDescription description = new PlantDescription();
+            description.LifeTime = 100;
+            GameManager.Instance.PlantInPlot(CursorManager.Instance.SelectedPlot.Plot, CursorManager.Instance.SelectedPlotPosition, description);
         }
 
         private IEnumerator Start()
@@ -86,10 +89,11 @@
             this.panel.anchoredPosition = new Vector2(screepPoint.x, yOffset + screepPoint.y);
 
             this.panel.gameObject.SetActive(true);
+            this.createButton.gameObject.SetActive(creationMode);
 
             if (creationMode)
             {
-                this.title.text = "Create plant";
+                this.title.text = "New plant";
                 this.waterProperty.Value = soilTile.WaterLevel;
                 this.waterProperty.DisplayMinMax = false;
 

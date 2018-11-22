@@ -1422,8 +1422,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1959998803}
-        m_MethodName: ChangeModeCallback
+      - m_Target: {fileID: 1959998802}
+        m_MethodName: CreatePlant
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1763,6 +1763,7 @@ MonoBehaviour:
   sunProperty: {fileID: 2055459819}
   windProperty: {fileID: 1005751132}
   elevationProperty: {fileID: 1440390711}
+  createButton: {fileID: 1675151842}
   verticalOffset: 150
 --- !u!114 &1959998803
 MonoBehaviour:
