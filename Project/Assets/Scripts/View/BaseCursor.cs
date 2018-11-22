@@ -1,16 +1,26 @@
 ﻿namespace View
 {
     using UnityEngine;
+    using UnityEngine.EventSystems;
 
     public abstract class BaseCursor : ICursor
     {
         private Vector3 origin;
         private Vector3 direction;
 
-        public abstract void OnActivate(object parameter);
+        public virtual void OnActivate(object parameter)
+        {
+            this.OnSelect(CursorManager.Instance.SelectedPlot, CursorManager.Instance.SelectedPlotPosition);
+        }
 
         public void Update(Camera camera)
         {
+            bool uiControlsInUse = EventSystem.current.IsPointerOverGameObject();
+            if (uiControlsInUse)
+            {
+                return;
+            }
+
             this.origin = camera.transform.position;
             this.direction = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, camera.nearClipPlane)) - this.origin;
 

@@ -4,13 +4,14 @@
     {
         public override void OnActivate(object parameter)
         {
-        }
-
-        public override void OnSelect(PlotView selectedPlotView, Position selectedTile)
-        {
+            base.OnActivate(parameter);
         }
 
         public override void OnDeactivate()
+        {
+        }
+
+        public override void OnSelect(PlotView selectedPlotView, Position selectedTile)
         {
         }
     }

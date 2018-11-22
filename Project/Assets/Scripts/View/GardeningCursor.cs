@@ -25,6 +25,7 @@
 
         public override void OnActivate(object parameter)
         {
+            base.OnActivate(parameter);
         }
 
         public override void OnDeactivate()
@@ -47,13 +48,6 @@
                 Vector3 position = selectedPlotView.GetTilePosition(selectedTile);
                 this.selectionObject.transform.position = position;
                 this.selectionObject.SetActive(true);
-
-                //if (Input.GetMouseButton(0))
-                //{
-                //    PlantDescription description = new PlantDescription();
-                //    description.LifeTime = 100;
-                //    GameManager.Instance.PlantInPlot(hoveredPlotView.Plot, hoveredTile, description);
-                //}
             }
             else
             {

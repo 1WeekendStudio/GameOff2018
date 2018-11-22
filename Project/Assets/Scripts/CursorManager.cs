@@ -77,8 +77,17 @@ public class CursorManager : MonoBehaviour
     {
         if (this.currentCursor != null)
         {
-            GUILayout.Space(20f);
+            GUILayout.Space(250f);
             GUILayout.Label($"Cursor {this.currentCursor.GetType().Name}");
+            if (SelectedPlot != null)
+            {
+                GUILayout.Label($"SelectedPlot: true");
+            }
+            else
+            {
+                GUILayout.Label($"SelectedPlot: false");
+            }
+            GUILayout.Label($"Selected position: {this.SelectedPlotPosition}");
         }
     }
 #endif
