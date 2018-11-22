@@ -19,6 +19,9 @@
         [SerializeField]
         private bool displayMin;
 
+        [SerializeField]
+        private bool displayMax;
+
         private RectTransform rectTransform;
 
         public int Value
@@ -39,6 +42,15 @@
             }
         }
 
+        public bool DisplayMin
+        {
+            set
+            {
+                this.displayMin = value;
+                this.min.gameObject.SetActive(this.displayMin);
+            }
+        }
+
         public int Max
         {
             set
@@ -48,12 +60,35 @@
             }
         }
 
+        public bool DisplayMax
+        {
+            set
+            {
+                this.displayMax = value;
+                this.max.gameObject.SetActive(this.displayMax);
+            }
+        }
+
+        public bool DisplayMinMax
+        {
+            set
+            {
+                this.DisplayMin = value;
+                this.DisplayMax = value;
+            }
+        }
+
         private void Start()
         {
             this.rectTransform = this.GetComponent<RectTransform>();
             if (!this.displayMin)
             {
                 this.min.gameObject.SetActive(false);
+            }
+
+            if (!this.displayMax)
+            {
+                this.max.gameObject.SetActive(false);
             }
         }
         

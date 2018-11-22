@@ -203,6 +203,7 @@ MonoBehaviour:
   min: {fileID: 114207873334720506}
   max: {fileID: 114126912353666396}
   displayMin: 1
+  displayMax: 1
 --- !u!222 &222143092747276312
 CanvasRenderer:
   m_ObjectHideFlags: 1
