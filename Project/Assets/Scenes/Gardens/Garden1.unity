@@ -365,7 +365,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1508455192}
   m_LocalRotation: {x: 0, y: 0.58212286, z: 0, w: 0.8131008}
-  m_LocalPosition: {x: -0.779, y: -2.269, z: 0.032}
+  m_LocalPosition: {x: -2.41, y: -3.74, z: 0.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1260549987}
@@ -385,7 +385,7 @@ MonoBehaviour:
   PlotDescription: {fileID: 11400000, guid: 17243494ed52a354fbcda42a6376e661, type: 2}
   GameplayWidth: 3
   GameplayHeight: 4
-  VisualSize: {x: 5, y: 8}
+  VisualSize: {x: 4, y: 6}
 --- !u!1001 &1624296592
 Prefab:
   m_ObjectHideFlags: 0
