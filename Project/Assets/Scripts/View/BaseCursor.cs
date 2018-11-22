@@ -77,6 +77,8 @@
                 {
                     CursorManager.Instance.SelectedPlot = null;
                     CursorManager.Instance.SelectedPlotPosition = Position.Invalid;
+
+                    this.OnSelect(null, Position.Invalid);
                 }
             }
         }
