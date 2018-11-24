@@ -36,7 +36,7 @@ public partial class GameManager : MonoBehaviour
             return false;
         }
 
-        plot.Soil[tile.X, tile.Y].Plant = new Plant("PlantName", description);
+        plot.Soil[tile.X, tile.Y].Plant = new Plant("PlantName", description, plot.Soil[tile.X, tile.Y]);
         return true;
     }
 

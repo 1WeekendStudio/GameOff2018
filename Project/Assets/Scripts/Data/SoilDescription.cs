@@ -5,6 +5,6 @@
     {
         public SoilVisualAffinity VisualAffinity;
         public int InitialWaterLevel;
-        public int QualityLevel;
+        public int InitialQualityLevel;
     }
 }

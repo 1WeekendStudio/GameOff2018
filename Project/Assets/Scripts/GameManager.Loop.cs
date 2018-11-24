@@ -19,7 +19,33 @@ public partial class GameManager : MonoBehaviour
 
     private void TickStep_Grow()
     {
-        // TODO
+        foreach (var plot in this.Garden.Plots)
+        {
+            foreach (var soilTile in plot.Soil)
+            {
+                var plant = soilTile.Plant;
+                if (plant != null)
+                {
+                    // check sun
+                    if (plant.IsWaterOk())
+                    {
+                        plant.Grow();
+                    }
+                    // check water
+                    if (plant.IsWaterOk())
+                    {
+                        plant.Grow();
+                    }
+                    // check soil
+                    if (plant.IsSoilOk())
+                    {
+                        plant.Grow();
+                    }
+
+                    soilTile.UpdateQuality(-1 * plant.Growth);
+                }
+            }
+        }
     }
 
     private void TickStep_Propagate()

@@ -20,9 +20,7 @@
         {
             for (int y = 0; y < this.Soil.GetLength(1); y++)
             {
-                this.Soil[x, y].SunshineLevel = this.Description.InitialSunshineLevel;
-                this.Soil[x, y].WindLevel = this.Description.InitialWindLevel;
-                this.Soil[x, y].WaterLevel = this.Soil[x, y].Description.InitialWaterLevel;
+                this.Soil[x, y].Initialize(this.Description.InitialSunshineLevel, this.Description.InitialWindLevel);
             }
         }
     }
