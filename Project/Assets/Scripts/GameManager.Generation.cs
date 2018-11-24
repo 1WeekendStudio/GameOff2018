@@ -1,5 +1,5 @@
 ﻿using Data;
-
+using System.Collections.Generic;
 using UnityEngine;
 
 using View;
@@ -7,16 +7,19 @@ using View;
 public partial class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private int numberOfDnaToGenerate = 10;
+    private int numberOfDnaToGenerate = 20;
 
     [SerializeField]
     private string[] dnaNameDatabase;
+
+    private List<Property> availableProperties;
 
     private Dna[] GenerateDnaDatabase()
     {
         Debug.Assert(this.dnaNameDatabase != null && this.dnaNameDatabase.Length >= this.numberOfDnaToGenerate, "Not enough dna names found.");
 
         Dna[] dnaDatabase = new Dna[this.numberOfDnaToGenerate];
+        this.availableProperties = new List<Property>();
         for (int index = 0; index < dnaDatabase.Length; index++)
         {
             dnaDatabase[index] = this.GenerateDna(this.dnaNameDatabase[index]);
@@ -28,6 +31,14 @@ public partial class GameManager : MonoBehaviour
     private Dna GenerateDna(string name)
     {
         PropertyModifier[] modifiers = new PropertyModifier[3];
+        this.availableProperties.Clear();
+        this.availableProperties.Add(Property.MinWater);
+        this.availableProperties.Add(Property.MinWater);
+        this.availableProperties.Add(Property.MinSunshine);
+        this.availableProperties.Add(Property.MaxSunshine);
+        this.availableProperties.Add(Property.Wind);
+        this.availableProperties.Add(Property.LifeTime);
+        this.availableProperties.Add(Property.Propagation);
 
         for (int index = 0; index < modifiers.Length; index++)
         {
@@ -39,7 +50,30 @@ public partial class GameManager : MonoBehaviour
 
     private PropertyModifier GenerateModifier()
     {
-        return new PropertyModifier((Property)Random.Range(0, (int)Property.Count), Random.Range(-2, 2));
+            //Water, Sun, Wind, LifeTime, Propagation
+
+     //   Property targetedProperty = (Property)Random.Range(0, (int)Property.Count);
+        int propertyIndex = Random.Range(0, this.availableProperties.Count);
+        Property targetedProperty = this.availableProperties[propertyIndex];
+        this.availableProperties.RemoveAt(propertyIndex);
+        int strengthMultiplier = Random.Range(1,3);
+        bool positiveImpact = (Random.Range(0,100) > 50);
+        int sign = 1;
+
+        if (positiveImpact) 
+        {
+            if (targetedProperty == Property.MinWater || targetedProperty == Property.MinSunshine)
+                sign = -1;
+
+        }
+        else 
+        {
+            if (!(targetedProperty == Property.MinWater || targetedProperty == Property.MinSunshine))
+                sign = -1;
+        }
+
+        //Debug.Log("Property: " + targetedProperty + " modified by: " + sign * strengthMultiplier * 10);
+        return new PropertyModifier(targetedProperty, sign * strengthMultiplier * 10);
     }
 
     private Garden CreateGarden(Data.GardenDescription description)
