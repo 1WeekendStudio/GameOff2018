@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c44f82ebd8a4544a3d5d60d330a904a, type: 3}
-  m_Name: Fertile
+  m_Name: Sand
   m_EditorClassIdentifier: 
   VisualAffinity: 0
-  InitialWaterLevel: 50
-  QualityLevel: 50
+  InitialWaterLevel: 10
+  QualityLevel: 10

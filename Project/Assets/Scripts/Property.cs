@@ -1,9 +1,12 @@
 ﻿public enum Property
 {
-    Water,
-    Sunshine,
+    MinWater,
+    MaxWater,
+    MinSunshine,
+    MaxSunshine,
     Wind,
     LifeTime,
+    Propagation,
 
     Count,
 }
