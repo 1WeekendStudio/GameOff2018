@@ -33,6 +33,7 @@ ModelImporter:
     400026: //RootNode
     2100000: Bark
     2100002: Leaf
+    2100004: Flower
     4300000: Icosphere
     7400000: Groth
     7400002: Leaf_Small
@@ -48,6 +49,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Bark
     second: {fileID: 2100000, guid: c60b37ba418222943b4055c1796973ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flower
+    second: {fileID: 2100000, guid: 77486462f481ba04d9a1d2456f633318, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
