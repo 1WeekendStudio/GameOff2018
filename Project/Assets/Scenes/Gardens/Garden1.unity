@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44971025, g: 0.49977905, b: 0.5756352, a: 1}
+  m_IndirectSpecularColor: {r: 0.44970977, g: 0.49977827, b: 0.57563365, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -159,7 +159,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 72
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -183,13 +183,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 242058955}
-  m_LocalRotation: {x: -0.03440567, y: 0.16752678, z: -0.0058501633, w: -0.9852497}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalRotation: {x: -0.19549851, y: 0.3527943, z: -0.07563255, w: -0.911919}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 4, y: -379.3, z: 0}
+  m_LocalEulerAnglesHint: {x: 24.2, y: -402.3, z: 0}
 --- !u!1 &465075870
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 465075870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.7495003, y: 3.1958718, z: 10.171334}
+  m_LocalPosition: {x: -0.8, y: 3.1958718, z: 32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1249131256}
@@ -364,13 +364,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1508455192}
-  m_LocalRotation: {x: 0, y: 0.58212286, z: 0, w: 0.8131008}
-  m_LocalPosition: {x: -2.41, y: -3.74, z: 0.21}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1260549987}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 71.2, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1508455194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,9 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlotDescription: {fileID: 11400000, guid: 17243494ed52a354fbcda42a6376e661, type: 2}
-  GameplayWidth: 3
-  GameplayHeight: 4
-  VisualSize: {x: 4, y: 6}
+  GameplayWidth: 16
+  GameplayHeight: 16
+  VisualSize: {x: 64, y: 64}
 --- !u!1001 &1624296592
 Prefab:
   m_ObjectHideFlags: 0
@@ -399,7 +399,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 19e39ec40bf8ed9409e9df3369a0564a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 59.1
+      value: 38.65
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 19e39ec40bf8ed9409e9df3369a0564a, type: 3}
       propertyPath: m_LocalPosition.z
