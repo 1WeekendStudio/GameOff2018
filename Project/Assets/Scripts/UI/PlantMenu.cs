@@ -160,6 +160,7 @@
                     var elementObject = GameObject.Instantiate(this.dnaIconPrefab);
                     element = elementObject.GetComponent<InventoryElement>();
                     element.gameObject.transform.SetParent(this.inventoryContentPanel.gameObject.transform);
+                    element.ElementClick += this.Element_ElementClick;
                     this.inventoryElements.Add(element);
                 }
 
@@ -170,6 +171,11 @@
             {
                 this.inventoryElements[index].gameObject.SetActive(false);
             }
+        }
+
+        private void Element_ElementClick(Dna selectedDna)
+        {
+            Debug.Log("Select dna " + selectedDna.Name);
         }
     }
 }

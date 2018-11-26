@@ -10,6 +10,10 @@
 
         private Dna element;
 
+        public delegate void ElementClickDelegate(Dna selectedDna);
+
+        public event ElementClickDelegate ElementClick;
+
         public Dna Element
         {
             get
@@ -24,14 +28,14 @@
             }
         }
 
+        public void OnSelected()
+        {
+            this.ElementClick?.Invoke(this.Element);
+        }
+
         private void Awake()
         {
             this.image = this.GetComponent<Image>();
-        }
-        
-        public void OnSelected()
-        {
-            Debug.Log("Select dna " + this.Element.Name);
         }
     }
 }
