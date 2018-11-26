@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -770,19 +770,19 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 698514265}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 127588435}
   - {fileID: 2147480538}
   - {fileID: 1763296440}
-  m_Father: {fileID: 1959998801}
-  m_RootOrder: 1
+  m_Father: {fileID: 1479952337}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 160, y: 20}
+  m_AnchoredPosition: {x: 140, y: 0}
   m_SizeDelta: {x: 280, y: 440}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &698514267
@@ -952,12 +952,12 @@ RectTransform:
   m_Children:
   - {fileID: 308716507}
   - {fileID: 1701873776}
-  m_Father: {fileID: 1959998801}
-  m_RootOrder: 2
+  m_Father: {fileID: 1479952337}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 440, y: 20}
+  m_AnchoredPosition: {x: 420, y: 0}
   m_SizeDelta: {x: 280, y: 440}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &941361721
@@ -1662,6 +1662,77 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1440390709}
   m_CullTransparentMesh: 0
+--- !u!1 &1479952336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1479952337}
+  - component: {fileID: 1479952339}
+  - component: {fileID: 1479952338}
+  m_Layer: 5
+  m_Name: PlantMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1479952337
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479952336}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 698514266}
+  - {fileID: 941361720}
+  m_Father: {fileID: 1959998801}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 160, y: 20}
+  m_SizeDelta: {x: 280, y: 440}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1479952338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479952336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.84634215, g: 0.84937924, b: 0.8584906, a: 0.84705883}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 21a7d39a27f1bc84eb08ba7fbcdc32f1, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1479952339
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1479952336}
+  m_CullTransparentMesh: 0
 --- !u!1 &1675151840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,7 +1977,7 @@ GameObject:
   - component: {fileID: 1701873776}
   - component: {fileID: 1701873777}
   m_Layer: 5
-  m_Name: Properties
+  m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2091,6 +2162,9 @@ MonoBehaviour:
   - Phaedromus
   - Nolus
   - Congrio
+  dnaIconDatabase:
+  - {fileID: 21300000, guid: 2d7f77e3e050422419b719f484abd9eb, type: 3}
+  - {fileID: 21300000, guid: 385a26ce7e57843429ef7d15ef1f4f79, type: 3}
 --- !u!114 &1838762802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2103,8 +2177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultPlantPrefab: {fileID: 1122266786458952, guid: e6c7bf10ef6d547459194b3c64efb4fc,
-    type: 2}
-  defaultPlantGhostPrefab: {fileID: 1977077119726422, guid: e5426bddd3fbbb34b87c68f6f6f0a3c0,
     type: 2}
 --- !u!114 &1838762803
 MonoBehaviour:
@@ -2271,8 +2343,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1220651771}
-  - {fileID: 698514266}
-  - {fileID: 941361720}
+  - {fileID: 1479952337}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2292,7 +2363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc65e0979e002214ba113ae0b6c3ad91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 698514266}
+  panel: {fileID: 1479952337}
+  inventoryPanel: {fileID: 941361720}
   title: {fileID: 127588436}
   waterProperty: {fileID: 1190618486}
   sunProperty: {fileID: 2055459819}
@@ -2300,6 +2372,9 @@ MonoBehaviour:
   elevationProperty: {fileID: 1440390711}
   createButton: {fileID: 1675151842}
   verticalOffset: 150
+  inventoryContentPanel: {fileID: 1701873776}
+  dnaIconPrefab: {fileID: 1495388719116966, guid: 8fce08c7cc1394d4e9cc68f1358195d0,
+    type: 2}
 --- !u!114 &1959998803
 MonoBehaviour:
   m_ObjectHideFlags: 0

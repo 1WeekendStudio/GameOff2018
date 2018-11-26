@@ -1,6 +1,7 @@
 ﻿namespace UI
 {
     using System.Collections;
+    using System.Collections.Generic;
 
     using Data;
 
@@ -9,10 +10,13 @@
 
     using View;
 
-    public class PlantTooltip : MonoBehaviour
+    public class PlantMenu : MonoBehaviour
     {
         [SerializeField]
         private RectTransform panel;
+
+        [SerializeField]
+        private RectTransform inventoryPanel;
 
         [SerializeField]
         private Text title;
@@ -35,7 +39,14 @@
         [SerializeField]
         private float verticalOffset = 150f;
 
+        [SerializeField]
+        private RectTransform inventoryContentPanel;
+
+        [SerializeField]
+        private GameObject dnaIconPrefab;
+
         private Camera camera;
+        private List<GameObject> inventoryElements = new List<GameObject>();
 
         public void CreatePlant()
         {
@@ -104,6 +115,9 @@
                 this.windProperty.DisplayMax = false;
 
                 this.elevationProperty.text = soilTile.Elevation.ToString();
+
+                this.inventoryPanel.gameObject.SetActive(true);
+                this.UpdateInventory();
             }
             else
             {
@@ -123,6 +137,38 @@
                 this.windProperty.Max = soilTile.Plant.Description.WindResistance;
 
                 this.elevationProperty.text = soilTile.Elevation.ToString();
+
+                this.inventoryPanel.gameObject.SetActive(false);
+            }
+        }
+
+        private void UpdateInventory()
+        {
+            int dnaIndex;
+            for (dnaIndex = 0; dnaIndex < GameManager.Instance.Inventory.Dna.Count; dnaIndex++)
+            {
+                Dna dna = GameManager.Instance.Inventory.Dna[dnaIndex];
+
+                GameObject dnaObject = null;
+                if (dnaIndex < this.inventoryElements.Count)
+                {
+                    dnaObject = this.inventoryElements[dnaIndex];
+                    dnaObject.SetActive(true);
+                }
+                else
+                {
+                    dnaObject = GameObject.Instantiate(this.dnaIconPrefab);
+                    dnaObject.gameObject.transform.SetParent(this.inventoryContentPanel.gameObject.transform);
+                    this.inventoryElements.Add(dnaObject);
+                }
+
+                Image image = dnaObject.GetComponentInChildren<Image>();
+                image.overrideSprite = dna.Icon;
+            }
+
+            for (int index = dnaIndex; index < this.inventoryElements.Count; dnaIndex++)
+            {
+                this.inventoryElements[index].SetActive(false);
             }
         }
     }

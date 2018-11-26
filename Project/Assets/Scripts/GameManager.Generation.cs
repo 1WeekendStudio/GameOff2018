@@ -12,23 +12,27 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     private string[] dnaNameDatabase;
 
+    [SerializeField]
+    private Sprite[] dnaIconDatabase;
+
     private List<Property> availableProperties;
 
     private Dna[] GenerateDnaDatabase()
     {
         Debug.Assert(this.dnaNameDatabase != null && this.dnaNameDatabase.Length >= this.numberOfDnaToGenerate, "Not enough dna names found.");
+        Debug.Assert(this.dnaIconDatabase != null && this.dnaIconDatabase.Length >= this.numberOfDnaToGenerate, "Not enough dna sprites found.");
 
         Dna[] dnaDatabase = new Dna[this.numberOfDnaToGenerate];
         this.availableProperties = new List<Property>();
         for (int index = 0; index < dnaDatabase.Length; index++)
         {
-            dnaDatabase[index] = this.GenerateDna(this.dnaNameDatabase[index]);
+            dnaDatabase[index] = this.GenerateDna(this.dnaNameDatabase[index % this.dnaNameDatabase.Length], this.dnaIconDatabase[index % this.dnaIconDatabase.Length]);
         }
 
         return dnaDatabase;
     }
 
-    private Dna GenerateDna(string name)
+    private Dna GenerateDna(string name, Sprite sprite)
     {
         PropertyModifier[] modifiers = new PropertyModifier[3];
         this.availableProperties.Clear();
@@ -45,7 +49,7 @@ public partial class GameManager : MonoBehaviour
             modifiers[index] = this.GenerateModifier();
         }
 
-        return new Dna(name, DnaState.Unknown, Traits.None, modifiers);
+        return new Dna(name, sprite, DnaState.Unknown, Traits.None, modifiers);
     }
 
     private PropertyModifier GenerateModifier()
