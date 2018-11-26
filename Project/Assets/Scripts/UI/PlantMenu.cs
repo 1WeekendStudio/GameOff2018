@@ -46,7 +46,7 @@
         private GameObject dnaIconPrefab;
 
         private Camera camera;
-        private List<GameObject> inventoryElements = new List<GameObject>();
+        private List<InventoryElement> inventoryElements = new List<InventoryElement>();
 
         public void CreatePlant()
         {
@@ -149,26 +149,26 @@
             {
                 Dna dna = GameManager.Instance.Inventory.Dna[dnaIndex];
 
-                GameObject dnaObject = null;
+                InventoryElement element = null;
                 if (dnaIndex < this.inventoryElements.Count)
                 {
-                    dnaObject = this.inventoryElements[dnaIndex];
-                    dnaObject.SetActive(true);
+                    element = this.inventoryElements[dnaIndex];
+                    element.gameObject.SetActive(true);
                 }
                 else
                 {
-                    dnaObject = GameObject.Instantiate(this.dnaIconPrefab);
-                    dnaObject.gameObject.transform.SetParent(this.inventoryContentPanel.gameObject.transform);
-                    this.inventoryElements.Add(dnaObject);
+                    var elementObject = GameObject.Instantiate(this.dnaIconPrefab);
+                    element = elementObject.GetComponent<InventoryElement>();
+                    element.gameObject.transform.SetParent(this.inventoryContentPanel.gameObject.transform);
+                    this.inventoryElements.Add(element);
                 }
 
-                Image image = dnaObject.GetComponentInChildren<Image>();
-                image.overrideSprite = dna.Icon;
+                element.Element = dna;
             }
 
             for (int index = dnaIndex; index < this.inventoryElements.Count; dnaIndex++)
             {
-                this.inventoryElements[index].SetActive(false);
+                this.inventoryElements[index].gameObject.SetActive(false);
             }
         }
     }
