@@ -1,6 +1,5 @@
 ﻿namespace UI
 {
-    using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -24,13 +23,43 @@
             set
             {
                 this.element = value;
-                this.image.overrideSprite = this.element.Icon;
+                if (this.element != null)
+                {
+                    this.image.overrideSprite = this.element.Icon;
+                }
+                else
+                {
+                    this.image.overrideSprite = null;
+                }
             }
         }
 
         public void OnSelected()
         {
+            if (this.Element == null)
+            {
+                return;
+            }
+
+            this.Element.Selected = !this.Element.Selected;
             this.ElementClick?.Invoke(this.Element);
+        }
+
+        private void Update()
+        {
+            if (this.Element == null)
+            {
+                return;
+            }
+
+            if (this.Element.Selected)
+            {
+                this.image.CrossFadeColor(new Color(1f, 1f, 1f, 0.5f), 0.5f, false, true, false);
+            }
+            else
+            {
+                this.image.CrossFadeColor(new Color(1f, 1f, 1f, 1f), 0.5f, false, true, false);
+            }
         }
 
         private void Awake()

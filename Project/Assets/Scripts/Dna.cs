@@ -20,4 +20,6 @@ public class Dna
     public Traits Trait { get; private set; }
 
     public PropertyModifier[] Modifiers { get; private set; }
+
+    public bool Selected { get; set; }
 }

@@ -40,6 +40,9 @@
         private float verticalOffset = 150f;
 
         [SerializeField]
+        private GameObject recipePanel;
+
+        [SerializeField]
         private RectTransform inventoryContentPanel;
 
         [SerializeField]
@@ -47,6 +50,8 @@
 
         private Camera camera;
         private List<InventoryElement> inventoryElements = new List<InventoryElement>();
+
+        private InventoryElement[] recipeElements;
 
         public void CreatePlant()
         {
@@ -57,6 +62,8 @@
 
         private IEnumerator Start()
         {
+            this.recipeElements = this.recipePanel.GetComponentsInChildren<InventoryElement>();
+
             while (this.camera == null)
             {
                 this.camera = FindObjectOfType<Camera>();
@@ -116,6 +123,8 @@
 
                 this.elevationProperty.text = soilTile.Elevation.ToString();
 
+                this.UpdateRecipe();
+
                 this.inventoryPanel.gameObject.SetActive(true);
                 this.UpdateInventory();
             }
@@ -142,6 +151,25 @@
             }
         }
 
+        private void UpdateRecipe()
+        {
+            int dnaIndex = 0;
+            for (int index = 0; index < GameManager.Instance.Inventory.Dna.Count && dnaIndex < 3; index++)
+            {
+                Dna dna = GameManager.Instance.Inventory.Dna[index];
+                if (dna.Selected)
+                {
+                    this.recipeElements[dnaIndex].Element = dna;
+                    dnaIndex++;
+                }
+            }
+
+            for (int index = dnaIndex; index < 3; index++)
+            {
+                this.recipeElements[dnaIndex].Element = null;
+            }
+        }
+
         private void UpdateInventory()
         {
             int dnaIndex;
@@ -160,7 +188,6 @@
                     var elementObject = GameObject.Instantiate(this.dnaIconPrefab);
                     element = elementObject.GetComponent<InventoryElement>();
                     element.gameObject.transform.SetParent(this.inventoryContentPanel.gameObject.transform);
-                    element.ElementClick += this.Element_ElementClick;
                     this.inventoryElements.Add(element);
                 }
 
@@ -171,11 +198,6 @@
             {
                 this.inventoryElements[index].gameObject.SetActive(false);
             }
-        }
-
-        private void Element_ElementClick(Dna selectedDna)
-        {
-            Debug.Log("Select dna " + selectedDna.Name);
         }
     }
 }
