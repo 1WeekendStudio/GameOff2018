@@ -5,7 +5,7 @@
 
     public class Gauge : MonoBehaviour
     {
-        private const float MaxValue = 10f;
+        private const float MaxValue = 100f;
 
         [SerializeField]
         private Image value;
