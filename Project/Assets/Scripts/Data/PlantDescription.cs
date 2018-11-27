@@ -1,5 +1,7 @@
 ﻿namespace Data
 {
+    using System.Collections.Generic;
+
     using UnityEngine;
 
     public class PlantDescription
@@ -12,6 +14,7 @@
         public int MaximumWater = 60;
         public int WindResistance = 50;
         public PlantTrait PlantTraits;
+        public List<Dna> DnaTraits = new List<Dna>();
 
         public void Reset(PlantDescription baseDescription)
         {
@@ -23,10 +26,13 @@
             this.MaximumWater = baseDescription.MaximumWater;
             this.WindResistance = baseDescription.WindResistance;
             this.PlantTraits = baseDescription.PlantTraits;
+            this.DnaTraits.Clear();
+            this.DnaTraits.AddRange(baseDescription.DnaTraits);
         }
 
         public void Apply(Dna dna)
         {
+            this.DnaTraits.Add(dna);
             foreach (var modifier in dna.Modifiers)
             {
                 switch (modifier.Property)
