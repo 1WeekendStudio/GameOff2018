@@ -17,11 +17,21 @@
             if (CursorManager.Instance.CurrentCursor is GardeningCursor)
             {
                 CursorManager.Instance.ChangeCursor<DefaultCursor>();
-                this.changeModeButtonText.text = "Do some gardening";
             }
             else if (CursorManager.Instance.CurrentCursor is DefaultCursor)
             {
                 CursorManager.Instance.ChangeCursor<GardeningCursor>();
+            }
+        }
+
+        private void Update()
+        {
+            if (CursorManager.Instance.CurrentCursor is GardeningCursor)
+            {
+                this.changeModeButtonText.text = "Do some gardening";
+            }
+            else if (CursorManager.Instance.CurrentCursor is DefaultCursor)
+            {
                 this.changeModeButtonText.text = "Enjoy your garden";
             }
         }
