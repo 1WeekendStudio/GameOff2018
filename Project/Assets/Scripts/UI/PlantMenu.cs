@@ -110,11 +110,17 @@
             this.panel.gameObject.SetActive(true);
             this.createButton.gameObject.SetActive(creationMode);
 
+            this.waterProperty.Value = soilTile.WaterLevel;
+            this.sunProperty.Value = soilTile.SunshineLevel;
+            this.windProperty.Value = soilTile.WindLevel;
+            this.elevationProperty.text = soilTile.Elevation.ToString();
+
             if (creationMode)
             {
                 this.title.text = "New plant";
 
                 this.plantDescription.Reset(this.basePlantDescription);
+
                 foreach (var dna in GameManager.Instance.Inventory.Dna)
                 {
                     if (dna.Selected)
@@ -123,20 +129,7 @@
                     }
                 }
 
-                this.waterProperty.Value = soilTile.WaterLevel;
-                this.waterProperty.Min = this.plantDescription.MinimumWater;
-                this.waterProperty.Max = this.plantDescription.MaximumWater;
-
-                this.sunProperty.Value = soilTile.SunshineLevel;
-                this.sunProperty.Min = this.plantDescription.MinimumSunshine;
-                this.sunProperty.Max = this.plantDescription.MaximumSunshine;
-
-                this.windProperty.Value = soilTile.WindLevel;
-                this.windProperty.Max = this.plantDescription.WindResistance;
-
-                this.elevationProperty.text = soilTile.Elevation.ToString();
-
-                this.UpdateRecipe();
+                this.UpdateDescription(this.plantDescription);
 
                 this.inventoryPanel.gameObject.SetActive(true);
                 this.UpdateInventory();
@@ -144,39 +137,32 @@
             else
             {
                 this.title.text = soilTile.Plant.Name;
-                this.waterProperty.Value = soilTile.WaterLevel;
-                this.waterProperty.Min = soilTile.Plant.Description.MinimumWater;
-                this.waterProperty.Max = soilTile.Plant.Description.MaximumWater;
 
-                this.sunProperty.Value = soilTile.SunshineLevel;
-                this.sunProperty.Min = soilTile.Plant.Description.MinimumSunshine;
-                this.sunProperty.Max = soilTile.Plant.Description.MaximumSunshine;
-
-                this.windProperty.Value = soilTile.WindLevel;
-                this.windProperty.Max = soilTile.Plant.Description.WindResistance;
-
-                this.elevationProperty.text = soilTile.Elevation.ToString();
+                this.UpdateDescription(soilTile.Plant.Description);
 
                 this.inventoryPanel.gameObject.SetActive(false);
             }
         }
 
-        private void UpdateRecipe()
+        private void UpdateDescription(PlantDescription description)
         {
-            int dnaIndex = 0;
-            for (int index = 0; index < GameManager.Instance.Inventory.Dna.Count && dnaIndex < 3; index++)
+            this.waterProperty.Min = description.MinimumWater;
+            this.waterProperty.Max = description.MaximumWater;
+
+            this.sunProperty.Min = description.MinimumSunshine;
+            this.sunProperty.Max = description.MaximumSunshine;
+
+            this.windProperty.Max = description.WindResistance;
+
+            for (int index = 0; index < description.DnaTraits.Count; index++)
             {
-                Dna dna = GameManager.Instance.Inventory.Dna[index];
-                if (dna.Selected)
-                {
-                    this.recipeElements[dnaIndex].Element = dna;
-                    dnaIndex++;
-                }
+                Dna dna = description.DnaTraits[index];
+                this.recipeElements[index].Element = dna;
             }
 
-            for (int index = dnaIndex; index < 3; index++)
+            for (int index = description.DnaTraits.Count; index < 3; index++)
             {
-                this.recipeElements[dnaIndex].Element = null;
+                this.recipeElements[index].Element = null;
             }
         }
 
@@ -204,7 +190,7 @@
                 element.Element = dna;
             }
 
-            for (int index = dnaIndex; index < this.inventoryElements.Count; dnaIndex++)
+            for (int index = dnaIndex; index < this.inventoryElements.Count; index++)
             {
                 this.inventoryElements[index].gameObject.SetActive(false);
             }
