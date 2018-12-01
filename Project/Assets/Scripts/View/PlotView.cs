@@ -1,14 +1,29 @@
 ﻿namespace View
 {
+    using System;
+
     using Assets.Scripts;
 
     using UnityEngine;
 
+    using Random = UnityEngine.Random;
+
     public class PlotView : MonoBehaviour
     {
+        [NonSerialized]
         public Plot Plot;
 
+        [NonSerialized]
         public Vector2 VisualSize;
+
+        [SerializeField]
+        private Color[] waterColors;
+
+        [SerializeField]
+        private Color[] sunshineColors;
+
+        [SerializeField]
+        private Color[] propagationColors;
 
         private GameObject[,] plantObjects;
 
@@ -34,6 +49,13 @@
                     {
                         this.plantObjects[x, y] = PlantGenerator.Instance.CreatePlant(soilTile.Plant.Description);
                         this.plantObjects[x, y].transform.position = this.GetTilePosition(new Position(x, y));
+                        this.plantObjects[x, y].transform.SetParent(this.transform);
+                    }
+                    else if (this.plantObjects[x, y] != null)
+                    {
+                        var component = this.plantObjects[x, y].GetComponent<Animator>();
+
+                        // TODO: Update anim with lifetime.
                     }
                 }
             }
