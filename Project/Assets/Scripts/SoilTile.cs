@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public struct SoilTile
+public class SoilTile
 {
     public Data.SoilDescription Description;
 
@@ -25,6 +25,6 @@ public struct SoilTile
     internal void UpdateQuality(int delta)
     {
         this.QualityLevel += delta;
-        Mathf.Clamp(this.QualityLevel, 0, 100);
+        this.QualityLevel = Mathf.Clamp(this.QualityLevel, 0, 100);
     }
 }
