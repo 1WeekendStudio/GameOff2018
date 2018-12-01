@@ -106,7 +106,7 @@ public partial class GameManager : MonoBehaviour
         {
             for (int y = 0; y < plot.Height; y++)
             {
-                plot.Soil[x, y].Description = plotGizmo.PlotDescription.DefaultSoilDescription;
+                plot.Soil[x, y] = new SoilTile { Description = plotGizmo.PlotDescription.DefaultSoilDescription };
             }
         }
 
