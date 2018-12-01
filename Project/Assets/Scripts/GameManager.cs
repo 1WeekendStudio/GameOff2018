@@ -29,14 +29,26 @@ public partial class GameManager : MonoBehaviour
 
     public Inventory Inventory { get; private set; }
 
-    public bool PlantInPlot(Plot plot, Position tile, PlantDescription description)
+    public bool PlantInPlotWithSelectedDna(Plot plot, Position tile)
     {
         if (plot.Soil[tile.X, tile.Y].Plant != null)
         {
             return false;
         }
 
-        plot.Soil[tile.X, tile.Y].Plant = new Plant("PlantName", description, plot.Soil[tile.X, tile.Y]);
+        PlantDescription plantDescription = new PlantDescription();
+        for (var index = this.Inventory.Dna.Count - 1; index >= 0; index--)
+        {
+            var dna = this.Inventory.Dna[index];
+            if (dna.Selected)
+            {
+                plantDescription.Apply(dna);
+                this.Inventory.Dna.RemoveAt(index);
+            }
+        }
+
+        plot.Soil[tile.X, tile.Y].Plant = new Plant("PlantName", plantDescription, plot.Soil[tile.X, tile.Y]);
+
         return true;
     }
 

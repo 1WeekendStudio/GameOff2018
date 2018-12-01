@@ -74,4 +74,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c59253ee44fe1408dc62f7e392d761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VisualSize: {x: 0, y: 0}

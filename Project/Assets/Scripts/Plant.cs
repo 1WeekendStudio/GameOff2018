@@ -56,4 +56,8 @@
     {
         this.Growth += 1;
     }
+
+    public string Name { get; private set; }
+
+    public Data.PlantDescription Description { get; private set; }
 }
