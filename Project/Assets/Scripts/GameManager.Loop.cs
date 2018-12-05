@@ -31,11 +31,13 @@ public partial class GameManager : MonoBehaviour
                     {
                         plant.Grow();
                     }
+
                     // check water
                     if (plant.IsWaterOk())
                     {
                         plant.Grow();
                     }
+
                     // check soil
                     if (plant.IsSoilOk())
                     {

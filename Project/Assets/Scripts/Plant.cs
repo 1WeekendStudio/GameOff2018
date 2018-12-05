@@ -1,13 +1,5 @@
 ﻿public class Plant
 {
-    public string Name { get; private set; }
-
-    public int Growth { get; private set; }
-
-    public SoilTile SoilTile { get; private set; }
-
-    public Data.PlantDescription Description { get; private set; }
-
     public Plant(string name, Data.PlantDescription description, SoilTile soilTile)
     {
         this.Name = name;
@@ -16,6 +8,14 @@
         this.Growth = 0;
     }
 
+    public string Name { get; private set; }
+
+    public int Growth { get; private set; }
+
+    public SoilTile SoilTile { get; private set; }
+
+    public Data.PlantDescription Description { get; private set; }
+    
     /**
      * Check if water level is in acceptable range
      **/
