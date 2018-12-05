@@ -47,15 +47,8 @@
                     }
                     else if (soilTile.Plant != null && this.plantObjects[x, y] == null)
                     {
-                        this.plantObjects[x, y] = PlantGenerator.Instance.CreatePlant(soilTile.Plant.Description);
+                        this.plantObjects[x, y] = PlantGenerator.Instance.CreatePlant(soilTile.Plant);
                         this.plantObjects[x, y].transform.position = this.GetTilePosition(new Position(x, y));
-                        this.plantObjects[x, y].transform.SetParent(this.transform);
-                    }
-                    else if (this.plantObjects[x, y] != null)
-                    {
-                        var component = this.plantObjects[x, y].GetComponent<Animator>();
-
-                        // TODO: Update anim with lifetime.
                     }
                 }
             }

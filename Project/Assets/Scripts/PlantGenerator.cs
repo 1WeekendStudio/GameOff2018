@@ -4,6 +4,8 @@
 
     using UnityEngine;
 
+    using View;
+
     public class PlantGenerator : MonoBehaviour
     {
         [SerializeField]
@@ -35,24 +37,27 @@
 
         public static PlantGenerator Instance { get; private set; }
 
-        public GameObject CreatePlant(PlantDescription description)
+        public GameObject CreatePlant(Plant plant)
         {
             GameObject plantObject = GameObject.Instantiate(this.defaultPlantPrefab);
-            
+
+            PlantView plantView = plantObject.GetComponent<PlantView>();
+            plantView.Plant = plant;
+
             var meshRenderer = plantObject.GetComponentInChildren<SkinnedMeshRenderer>();
 
-            meshRenderer.SetBlendShapeWeight((int)PlantBlendShape.Thickness, description.MaximumWater);
-            meshRenderer.SetBlendShapeWeight((int)PlantBlendShape.Leaf, description.MaximumSunshine);
-            meshRenderer.SetBlendShapeWeight((int)PlantBlendShape.Roots, description.WindResistance);
+            meshRenderer.SetBlendShapeWeight((int)PlantBlendShape.Thickness, plant.Description.MaximumWater);
+            meshRenderer.SetBlendShapeWeight((int)PlantBlendShape.Leaf, plant.Description.MaximumSunshine);
+            meshRenderer.SetBlendShapeWeight((int)PlantBlendShape.Roots, plant.Description.WindResistance);
             meshRenderer.SetBlendShapeWeight((int)PlantBlendShape.Curvy, Random.Range(0, 100));
 
-            int colorIndex = Mathf.RoundToInt((description.MinimumWater / 100f) * this.waterColors.Length);
+            int colorIndex = Mathf.RoundToInt((plant.Description.MinimumWater / 100f) * this.waterColors.Length);
             meshRenderer.materials[(int)PlantMaterial.Bark].color = this.waterColors[colorIndex];
 
-            colorIndex = Mathf.RoundToInt((description.MinimumSunshine / 100f) * this.sunshineColors.Length);
+            colorIndex = Mathf.RoundToInt((plant.Description.MinimumSunshine / 100f) * this.sunshineColors.Length);
             meshRenderer.materials[(int)PlantMaterial.Leaf].color = this.sunshineColors[colorIndex];
 
-            colorIndex = Mathf.RoundToInt((description.PropagationLevel / 100f) * this.propagationColors.Length);
+            colorIndex = Mathf.RoundToInt((plant.Description.PropagationLevel / 100f) * this.propagationColors.Length);
             meshRenderer.materials[(int)PlantMaterial.Flower].color = this.propagationColors[colorIndex];
 
             return plantObject;
